@@ -82,4 +82,4 @@ mRefreshLayout.setFootView(new ClassicsFootView(getBaseContext()));
         mRefreshLayout.setCanLoadMore(true);
 ```
 ### 效果图
-![效果图](http://img.blog.csdn.net/20180126145556196?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVnhpYW9jYWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![效果图](https://github.com/xindasunday/assert/blob/master/easyrefreshlayout/%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0.gif)
