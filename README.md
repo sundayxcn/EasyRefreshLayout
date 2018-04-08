@@ -24,7 +24,7 @@ allprojects {
 模块build.gradle中引入
 ```
 dependencies {
-    compile 'com.github.xindasunday:easyrefreshlayout:1.0.1'
+    compile 'com.github.xindasunday:easyrefreshlayout:1.0.2'
 }
 ```
 ## 使用方法
@@ -81,4 +81,5 @@ mRefreshLayout.setFootView(new ClassicsFootView(getBaseContext()));
         //是否允许加载更多
         mRefreshLayout.setCanLoadMore(true);
 ```
-
+### 效果图
+![效果图](http://img.blog.csdn.net/20180126145556196?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVnhpYW9jYWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
