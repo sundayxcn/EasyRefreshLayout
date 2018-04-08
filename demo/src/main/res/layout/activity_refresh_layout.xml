@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="为了便于布局计算，RefreshLayout 只能有一个子View\n
+        下面列出常用设置\n
+        更多其他设置请查看源码或者查看csdn博客\n
+        http://blog.csdn.net/Vxiaocai
+" />
+
+
+    <sunday.com.easyrefreshlayout.RefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/text">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/full_pull"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="全屏下拉" />
+
+            <Button
+                android:id="@+id/pull_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/full_pull"
+                android:text="下拉速度调整" />
+
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/pull_rate" />
+
+        </RelativeLayout>
+
+    </sunday.com.easyrefreshlayout.RefreshLayout>
+
+
+</RelativeLayout>
