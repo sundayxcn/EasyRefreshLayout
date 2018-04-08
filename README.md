@@ -1,7 +1,6 @@
 # easyrefreshlayout
-经过完整测试无bug的下拉刷新组件,此次存放源码，无Demo
+经过完整测试无bug的下拉刷新组件
 
-[Demo地址](https://github.com/xindasunday/ShareDemo)
 
 优点：
 - 采用scroll方式改变scroll值，而不是更改上下Headview的高度，不会重新布局，效率更高，速度更快
@@ -30,12 +29,12 @@ dependencies {
 ```
 ## 使用方法
 请注意：默认没有FootView，如果需要加载更多，需要在代码中增加
-```
+```java
 mRefreshLayout.setFootView(new ClassicsFootView(getBaseContext()));
 ```
 ### 基本用法：
 
-```
+```java
     private RefreshLayout mRefreshLayout;
         mRefreshLayout = (RefreshLayout) findViewById(R.id.refresh_layout);
         mRefreshLayout.setRefreshListener(new RefreshListener() {
@@ -62,7 +61,7 @@ mRefreshLayout.setFootView(new ClassicsFootView(getBaseContext()));
 
 ```
 ### 更多设置
-```
+```java
         //设置新的HeadView
         mRefreshLayout.setHeadView(new RotateHeaderView(getBaseContext()));
         //android默认滑动速度1f-值越大越快，默认0.3f
