@@ -1,4 +1,4 @@
-package sunday.com.easyrefreshlayout;
+package com.sunday.views;
 
 /**
  * Created by zhongfei.sun on 2018/1/19.

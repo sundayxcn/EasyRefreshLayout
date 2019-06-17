@@ -1,4 +1,4 @@
-package sunday.com.easyrefreshlayout;
+package com.sunday.views.assist;
 
 import android.content.Context;
 import android.support.annotation.IntDef;
@@ -7,8 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sunday.views.HeaderView;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import sunday.com.easyrefreshlayout.R;
 
 /**
  * Created by zhongfei.sun on 2018/1/24.

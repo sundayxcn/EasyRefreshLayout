@@ -1,4 +1,4 @@
-package sunday.com.easyrefreshlayout;
+package com.sunday.views;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -12,14 +12,11 @@ import android.widget.AbsListView;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 
+import com.sunday.views.assist.ClassicsHeaderView;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
-import sunday.com.easyrefreshlayout.ClassicsHeaderView;
-import sunday.com.easyrefreshlayout.FootView;
-import sunday.com.easyrefreshlayout.HeaderView;
-import sunday.com.easyrefreshlayout.RefreshListener;
 
 /**
  * Created by zhongfei.sun on 2017/10/20.

@@ -15,11 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import sunday.com.demo.R;
-import sunday.com.easyrefreshlayout.ClassicsFootView;
-import sunday.com.easyrefreshlayout.OnlyLoadingHeaderView;
-import sunday.com.easyrefreshlayout.RefreshLayout;
-import sunday.com.easyrefreshlayout.RefreshListener;
-import sunday.com.easyrefreshlayout.RotateHeaderView;
+import com.sunday.views.assist.ClassicsFootView;
+import com.sunday.views.assist.OnlyLoadingHeaderView;
+import com.sunday.views.RefreshLayout;
+import com.sunday.views.RefreshListener;
+import com.sunday.views.assist.RotateHeaderView;
 
 
 /**
