@@ -1,4 +1,4 @@
-package com.sunday.views;
+package com.sunday.easy;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -12,8 +12,6 @@ import android.widget.AbsListView;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 
-import com.sunday.views.assist.ClassicsHeaderView;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -22,7 +20,7 @@ import java.util.Set;
  * Created by zhongfei.sun on 2017/10/20.
  */
 
-public class RefreshLayout extends ViewGroup {
+public class EasyRefreshLayout extends ViewGroup {
 
     private HeaderView mHeaderView;
     private FootView mFootView;
@@ -70,15 +68,15 @@ public class RefreshLayout extends ViewGroup {
 
 
 
-    public RefreshLayout(Context context) {
+    public EasyRefreshLayout(Context context) {
         this(context, null);
     }
 
-    public RefreshLayout(Context context, @Nullable AttributeSet attrs) {
+    public EasyRefreshLayout(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RefreshLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public EasyRefreshLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -86,8 +84,8 @@ public class RefreshLayout extends ViewGroup {
     private void init() {
         mChildCalcList = new HashSet<>();
         mScroller = new Scroller(getContext());
-        mHeaderView = new ClassicsHeaderView(getContext());
-        setHeadView(mHeaderView);
+        //mHeaderView = new ClassicsHeaderView(getContext());
+        //setHeadView(mHeaderView);
     }
 
     public void setRefreshListener(RefreshListener refreshListener) {
@@ -129,7 +127,7 @@ public class RefreshLayout extends ViewGroup {
             removeView(headView);
         }
         mHeaderView = headerView;
-        RefreshLayout.LayoutParams layoutParams = new LayoutParams(-1, -2);
+        ViewGroup.LayoutParams layoutParams = new LayoutParams(-1, -2);
         mHeaderView.getView().setLayoutParams(layoutParams);
         if (mHeaderView.getView().getParent() != null) {
             ((ViewGroup) mHeaderView.getView().getParent()).removeAllViews();
@@ -144,7 +142,7 @@ public class RefreshLayout extends ViewGroup {
             removeView(child);
         }
         mFootView = footView;
-        LayoutParams layoutParams = new LayoutParams(-1, -2);
+        ViewGroup.LayoutParams layoutParams = new LayoutParams(-1, -2);
         mFootView.getView().setLayoutParams(layoutParams);
         if (mFootView.getView().getParent() != null) {
             ((ViewGroup) this.mFootView.getView().getParent()).removeAllViews();
@@ -368,7 +366,9 @@ public class RefreshLayout extends ViewGroup {
                 if ((!isTouchInScrollChild(mLastRawX, mLastRawY) || isChildTop()) && moveY > 0 && isCanRefresh()) {
                     mScroller.abortAnimation();
                     setRefreshStatus(true);
-                    mHeaderView.begin();
+                    if(mHeaderView != null) {
+                        mHeaderView.begin();
+                    }
                     if (mFootView != null) {
                         mFootView.reset();
                     }
@@ -377,7 +377,9 @@ public class RefreshLayout extends ViewGroup {
                     if ((!isTouchInScrollChild(mLastRawX, mLastRawY) || isChildBottom()) || getScrollY() < mHeadViewHeight) {
                         mScroller.abortAnimation();
                         setLoadMoreStatus(true);
-                        mFootView.begin();
+                        if(mFootView != null) {
+                            mFootView.begin();
+                        }
                         if (mHeaderView != null) {
                             mHeaderView.reset();
                         }
@@ -414,7 +416,9 @@ public class RefreshLayout extends ViewGroup {
                     } else {
                         progress = (Math.abs(getScrollY()) + mHeadViewHeight) / (float) mHeadViewHeight;
                     }
-                    mHeaderView.progress(progress);
+                    if(mHeaderView != null) {
+                        mHeaderView.progress(progress);
+                    }
                     scrollBy(0, (int) -move);
                 } else if (isLoadMoreStatus()) {
                     float progress = (getScrollY() - mHeadViewHeight) / (float) mFootViewHeight;
@@ -428,7 +432,7 @@ public class RefreshLayout extends ViewGroup {
                 return true;
             case MotionEvent.ACTION_UP:
                 if (isRefreshStatus()) {
-                    if (mRefreshListener != null) {
+
                         if (getScrollY() > 0) {
                             mHeaderView.reset();
                             mScroller.startScroll(0, getScrollY(), 0, mHeadViewHeight - getScrollY(), mOutRangeScrollTime);
@@ -436,22 +440,28 @@ public class RefreshLayout extends ViewGroup {
                         } else {
                             mScroller.startScroll(0, getScrollY(), 0, -getScrollY(), mOutRangeScrollTime);
                             postInvalidate();
-                            mHeaderView.loading();
-                            mRefreshListener.refresh();
+                            if(mHeaderView != null) {
+                                mHeaderView.loading();
+                            }
+                            if (mRefreshListener != null){
+                                mRefreshListener.refresh();
+                            }
                         }
-                    }
-                } else if (isLoadMoreStatus()) {
-                    if (mRefreshListener != null) {
-                        if (getScrollY() >= mHeadViewHeight + mFootViewHeight) {
-                            mFootView.loading();
-                            mRefreshListener.loadMore();
-                            mScroller.startScroll(0, getScrollY(), 0, mFootViewHeight + mHeadViewHeight - getScrollY(), mOutRangeScrollTime);
-                            postInvalidate();
-                        } else {
-                            mScroller.startScroll(0, getScrollY(), 0, mHeadViewHeight - getScrollY(), mOutRangeScrollTime);
-                            postInvalidate();
 
+                } else if (isLoadMoreStatus()) {
+                    if (getScrollY() >= mHeadViewHeight + mFootViewHeight) {
+                        if(mFootView != null) {
+                            mFootView.loading();
                         }
+                        if (mRefreshListener != null) {
+                            mRefreshListener.loadMore();
+                        }
+                        mScroller.startScroll(0, getScrollY(), 0, mFootViewHeight + mHeadViewHeight - getScrollY(), mOutRangeScrollTime);
+                        postInvalidate();
+                    } else {
+                        mScroller.startScroll(0, getScrollY(), 0, mHeadViewHeight - getScrollY(), mOutRangeScrollTime);
+                        postInvalidate();
+
                     }
                 }
                 break;
@@ -605,7 +615,7 @@ public class RefreshLayout extends ViewGroup {
     }
 
     public boolean isCanRefresh() {
-        return mHeaderView != null && isCanRefresh;
+        return  isCanRefresh;
     }
 
     public void setCanRefresh(boolean canRefresh) {
@@ -613,7 +623,7 @@ public class RefreshLayout extends ViewGroup {
     }
 
     public boolean isCanLoadMore() {
-        return mFootView != null && isCanLoadMore;
+        return isCanLoadMore;
     }
 
     public void setCanLoadMore(boolean canLoadMore) {
@@ -622,8 +632,8 @@ public class RefreshLayout extends ViewGroup {
 
 
     @Override
-    public RefreshLayout.LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new RefreshLayout.LayoutParams(getContext(), attrs);
+    public EasyRefreshLayout.LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new EasyRefreshLayout.LayoutParams(getContext(), attrs);
     }
 
     public static class LayoutParams extends MarginLayoutParams {

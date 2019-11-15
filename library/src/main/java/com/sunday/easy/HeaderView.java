@@ -1,4 +1,4 @@
-package com.sunday.views;
+package com.sunday.easy;
 
 import android.view.View;
 

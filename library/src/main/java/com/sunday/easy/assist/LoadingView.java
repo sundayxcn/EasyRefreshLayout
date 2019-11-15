@@ -1,4 +1,4 @@
-package com.sunday.views.assist;
+package com.sunday.easy.assist;
 
 import android.content.Context;
 import android.graphics.Bitmap;

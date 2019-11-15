@@ -2,7 +2,6 @@ package sunday.com.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import sunday.com.demo.R;
-import com.sunday.views.assist.ClassicsFootView;
-import com.sunday.views.assist.OnlyLoadingHeaderView;
-import com.sunday.views.RefreshLayout;
-import com.sunday.views.RefreshListener;
-import com.sunday.views.assist.RotateHeaderView;
+
+import com.sunday.easy.EasyRefreshLayout;
+import com.sunday.easy.assist.ClassicsFootView;
+import com.sunday.easy.assist.OnlyLoadingHeaderView;
+import com.sunday.easy.assist.RotateHeaderView;
 
 
 /**
@@ -27,7 +26,7 @@ import com.sunday.views.assist.RotateHeaderView;
  */
 
 public class RefreshActivity extends Activity{
-    private RefreshLayout mRefreshLayout;
+    private EasyRefreshLayout mRefreshLayout;
     private ListView mListView;
     public static final String[] OP = {
             "RotateHeaderView,下拉看效果",
@@ -37,28 +36,28 @@ public class RefreshActivity extends Activity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refresh_layout);
-        mRefreshLayout = (RefreshLayout) findViewById(R.id.refresh_layout);
-        mRefreshLayout.setRefreshListener(new RefreshListener() {
-            @Override
-            public void refresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mRefreshLayout.finishRefresh(true);
-                    }
-                },2000);
-            }
-
-            @Override
-            public void loadMore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mRefreshLayout.finishLoadMore(true);
-                    }
-                },2000);
-            }
-        });
+        mRefreshLayout = (EasyRefreshLayout) findViewById(R.id.refresh_layout);
+//        mRefreshLayout.setRefreshListener(new RefreshListener() {
+//            @Override
+//            public void refresh() {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mRefreshLayout.finishRefresh(true);
+//                    }
+//                },2000);
+//            }
+//
+//            @Override
+//            public void loadMore() {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mRefreshLayout.finishLoadMore(true);
+//                    }
+//                },2000);
+//            }
+//        });
         mListView = (ListView) findViewById(R.id.list_view);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

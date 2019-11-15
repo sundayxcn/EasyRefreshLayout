@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
 
-    <com.sunday.views.assist.LoadingView
+    <com.sunday.easy.assist.LoadingView
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

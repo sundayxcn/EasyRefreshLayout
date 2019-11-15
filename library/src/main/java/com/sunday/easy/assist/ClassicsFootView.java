@@ -1,4 +1,4 @@
-package com.sunday.views.assist;
+package com.sunday.easy.assist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,23 +6,23 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sunday.views.HeaderView;
+import com.sunday.easy.FootView;
 
 import sunday.com.easyrefreshlayout.R;
 
+
 /**
- * Created by zhongfei.sun on 2018/1/19.
+ * Created by Administrator on 2018/1/21.
  */
 
-public class ClassicsHeaderView implements HeaderView {
-
+public class ClassicsFootView implements FootView {
     private Context mContext;
     private View mParent;
 
     private TextView mTextView;
     private ImageView mFinishView;
 
-    public ClassicsHeaderView(Context context){
+    public ClassicsFootView(Context context){
         mContext = context;
     }
 
@@ -34,21 +34,21 @@ public class ClassicsHeaderView implements HeaderView {
     @Override
     public void progress(float progress) {
         if(progress >= 1f){
-            mTextView.setText("松开刷新");
+            mTextView.setText("松开加载更多");
         }else{
-            mTextView.setText("下拉刷新");
+            mTextView.setText("上拉加载更多");
         }
     }
 
     @Override
     public void loading() {
-        mTextView.setText("刷新中");
+        mTextView.setText("正在加载...");
     }
 
     @Override
     public void reset() {
         mFinishView.setVisibility(View.INVISIBLE);
-        mTextView.setText("下拉刷新");
+        mTextView.setText("加载更多");
     }
 
     @Override
@@ -64,11 +64,7 @@ public class ClassicsHeaderView implements HeaderView {
     @Override
     public void showPause(boolean success) {
         mFinishView.setVisibility(View.VISIBLE);
-        if(success) {
-            mTextView.setText("刷新成功");
-        }else{
-            mTextView.setText("刷新失败");
-        }
+        mTextView.setText("加载成功");
     }
 
     @Override

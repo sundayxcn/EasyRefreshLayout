@@ -1,11 +1,11 @@
-package com.sunday.views.assist;
+package com.sunday.easy.assist;
 
 import android.content.Context;
 import android.support.annotation.IntDef;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.sunday.views.HeaderView;
+import com.sunday.easy.HeaderView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
