@@ -434,7 +434,9 @@ public class EasyRefreshLayout extends ViewGroup {
                 if (isRefreshStatus()) {
 
                         if (getScrollY() > 0) {
-                            mHeaderView.reset();
+                            if(mHeaderView != null) {
+                                mHeaderView.reset();
+                            }
                             mScroller.startScroll(0, getScrollY(), 0, mHeadViewHeight - getScrollY(), mOutRangeScrollTime);
                             postInvalidate();
                         } else {
