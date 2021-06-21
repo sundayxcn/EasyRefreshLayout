@@ -24,7 +24,7 @@ allprojects {
 模块build.gradle中引入
 ```
 dependencies {
-    compile 'com.github.xindasunday:easyrefreshlayout:1.0.2'
+    compile 'com.github.xindasunday:easyrefreshlayout:1.0.4'
 }
 ```
 ## 使用方法
